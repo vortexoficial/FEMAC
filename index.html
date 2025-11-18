@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEMAC Engenharia - Soluções Completas</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto Condensed', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (theme === 'dark' || (!theme && systemPrefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {
+                console.warn('Não foi possível aplicar o tema salvo.', e);
+            }
+        })();
+    </script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-300 text-base">
+
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header class="main-header fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300">
+        <div class="container mx-auto max-w-7xl px-4">
+            <div class="flex h-20 items-center justify-between bg-white/30 dark:bg-gray-900/30 backdrop-blur-lg border border-gray-900/10 dark:border-white/20 rounded-lg mt-4 px-6 shadow-lg">
+                
+                <a href="#hero" class="block" aria-label="FEMAC Engenharia - Início">
+                    <img src="img/logoe.png" alt="FEMAC Logo Light" 
+                         class="h-8 w-auto object-contain block dark:hidden">
+                    
+                    <img src="img/logob.png" alt="FEMAC Logo Dark" 
+                         class="h-8 w-auto object-contain hidden dark:block">
+                </a>
+                
+                <nav class="main-nav hidden lg:block">
+                    <ul class="flex items-center gap-8">
+                        <li><a href="#quem-somos" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Quem Somos</a></li>
+                        <li><a href="#solucoes" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Soluções</a></li>
+                        <li><a href="#laudos" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Laudos</a></li>
+                        <li><a href="#projetos" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors">Projetos</a></li>
+                        
+                        <li>
+                            <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                               target="_blank" 
+                               class="bg-sky-500 text-white font-medium py-2 px-4 rounded-lg flex items-center hover:bg-sky-400 transition-colors text-sm">
+                                <i class="fab fa-whatsapp mr-2 text-base"></i>
+                                Contato
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="flex items-center gap-4 lg:hidden">
+                    <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                       target="_blank" 
+                       class="bg-sky-500 text-white font-medium py-2 px-4 rounded-lg flex items-center hover:bg-sky-400 transition-colors text-sm">
+                        <i class="fab fa-whatsapp mr-2 text-base"></i>
+                        Contato
+                    </a>
+                    
+                    <button class="hamburger-menu text-gray-900 dark:text-white text-2xl" id="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay fixed inset-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg z-[999] flex flex-col p-6 transition-all duration-300 ease-in-out lg:hidden -translate-x-full" id="mobile-menu-overlay">
+        <div class="flex justify-between items-center mb-10">
+            <a href="#hero" class="block" aria-label="FEMAC Engenharia - Início">
+                <img src="img/logoe.png" alt="FEMAC Logo Light" 
+                     class="h-8 w-auto object-contain block dark:hidden">
+                
+                <img src="img/logob.png" alt="FEMAC Logo Dark" 
+                     class="h-8 w-auto object-contain hidden dark:block">
+            </a>
+            <button class="close-menu text-gray-900 dark:text-white text-3xl" id="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav flex-grow">
+            <ul class="flex flex-col gap-6 text-center">
+                <li><a href="#quem-somos" class="text-gray-900 dark:text-white text-xl font-medium">Quem Somos</a></li>
+                <li><a href="#solucoes" class="text-gray-900 dark:text-white text-xl font-medium">Soluções</a></li>
+                <li><a href="#laudos" class="text-gray-900 dark:text-white text-xl font-medium">Laudos</a></li>
+                <li><a href="#projetos" class="text-gray-900 dark:text-white text-xl font-medium">Projetos</a></li>
+            </ul>
+        </nav>
+        <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="w-full text-center bg-sky-500 text-white font-bold py-3 px-6 rounded-lg text-base">
+            SOLICITAR ORÇAMENTO
+        </a>
+    </div>
+
+    <main>
+
+        <section id="hero" class="relative bg-white dark:bg-gray-900 overflow-hidden pt-32 lg:pt-40 pb-0 flex flex-col lg:block z-10">
+            <div class="container mx-auto max-w-7xl px-4 flex-grow flex flex-col lg:block"> 
+                
+                <div class="flex flex-col h-full lg:grid lg:grid-cols-2 lg:gap-8 flex-grow">
+                    
+                    <div class="text-center lg:text-left pb-4 lg:pb-0 shrink-0 lg:self-center">
+                        <h1 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-4 fade-in-section">
+                            Engenharia de Excelência que Transforma Ideias em Realidade.
+                        </h1>
+                        
+                        <p class="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-4 fade-in-section" style="animation-delay: 0.2s;">
+                            Soluções completas para Residências, Comércio e Indústria. Da regularização (AVCB/CLCB) e laudos técnicos ao gerenciamento total da sua obra.
+                        </p>
+                        
+                        <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                           target="_blank" 
+                           class="btn-animated inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-lg text-base uppercase tracking-wide hover:bg-sky-400 transition-colors transform hover:scale-105 fade-in-section shadow-lg shadow-sky-500/30" 
+                           style="animation-delay: 0.4s;">
+                            Solicitar Orçamento Agora
+                        </a>
+                    </div>
+                    
+                    <div class="relative mt-auto -mx-4 lg:mx-0 lg:mt-0 w-[calc(100%+2rem)] lg:w-full flex justify-center items-end leading-none -mb-1 lg:self-end">
+                        <img 
+                            src="img/img1.png" 
+                            alt="Engenheira da FEMAC com capacete"
+                            class="hero-image-mobile-fix w-full h-auto lg:max-h-none object-contain object-bottom block z-0"
+                            onerror="this.src='https://placehold.co/600x600/000000/00000000?text=Imagem+FEMAC+Aqui'"
+                        >
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="logo-ticker" class="relative z-20 py-6 border-t border-b border-sky-500 overflow-hidden bg-white dark:bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4 logo-ticker-container">
+                <div class="marquee-container relative flex overflow-hidden">
+                    <div class="marquee-track flex-shrink-0 flex items-center justify-around min-w-full gap-16">
+                        
+                        <img src="img/logo1.png" alt="Logo 1" class="h-8 object-contain">
+                        <img src="img/logo2.png" alt="Logo 2" class="h-8 object-contain">
+                        <img src="img/logo3.png" alt="Logo 3" class="h-8 object-contain">
+                        <img src="img/logo4.png" alt="Logo 4" class="h-8 object-contain">
+                        <img src="img/logo5.png" alt="Logo 5" class="h-8 object-contain">
+                        <img src="img/logo6.png" alt="Logo 6" class="h-8 object-contain">
+                        <img src="img/logo7.png" alt="Logo 7" class="h-8 object-contain">
+                        <img src="img/logo8.png" alt="Logo 8" class="h-8 object-contain">
+                        <img src="img/logo9.png" alt="Logo 9" class="h-8 object-contain">
+                        <img src="img/logo10.png" alt="Logo 10" class="h-8 object-contain">
+                        
+                        <img src="img/logo1.png" alt="Logo 1" class="h-8 object-contain">
+                        <img src="img/logo2.png" alt="Logo 2" class="h-8 object-contain">
+                        <img src="img/logo3.png" alt="Logo 3" class="h-8 object-contain">
+                        <img src="img/logo4.png" alt="Logo 4" class="h-8 object-contain">
+                        <img src="img/logo5.png" alt="Logo 5" class="h-8 object-contain">
+                        <img src="img/logo6.png" alt="Logo 6" class="h-8 object-contain">
+                        <img src="img/logo7.png" alt="Logo 7" class="h-8 object-contain">
+                        <img src="img/logo8.png" alt="Logo 8" class="h-8 object-contain">
+                        <img src="img/logo9.png" alt="Logo 9" class="h-8 object-contain">
+                        <img src="img/logo10.png" alt="Logo 10" class="h-8 object-contain">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="solucoes" class="py-24 bg-gray-100 dark:bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-sky-500 mb-4">
+                        Segurança e Conformidade Total
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Evite multas e interdições. Regularize seu imóvel com quem entende.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col items-center gap-8">
+                    <div class="grid w-full grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-file-shield"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Projetos AVCB/CLCB</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Vistoria e regularização completa junto ao Corpo de Bombeiros.</p>
+                        </div>
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.1s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-fire-extinguisher"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Prevenção Contra Incêndios</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Elaboração e aprovação de sistemas de proteção para indústrias e comércios.</p>
+                        </div>
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.2s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-users-viewfinder"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Brigada de Incêndio</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Treinamento especializado para capacitar sua equipe na prevenção e combate.</p>
+                        </div>
+                    </div>
+                    <div class="grid w-full grid-cols-1 md:grid-cols-2 lg:w-2/3 gap-8">
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.3s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-building-user"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Serviços para Prefeituras</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Aprovação de projetos, regularizações, habite-se, desdobro e demolição.</p>
+                        </div>
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.4s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-stamp"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Certidão Negativa de Débito (CND)</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Regularização de obras na Receita Federal com emissão ágil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quem-somos" class="py-24 bg-white dark:bg-gray-800">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        Projetos personalizados e obras que superam expectativas.
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        A FEMAC Engenharia nasceu da paixão pela construção e do compromisso inegociável com a qualidade. Entendemos que cada projeto é um sonho sendo materializado.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="fade-in-section" style="animation-delay: 0.2s;">
+                        <div class="flex justify-center mb-4"><span class="text-4xl text-sky-500"><i class="fas fa-bullseye"></i></span></div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Missão</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Viabilizar projetos que trazem retorno real e realizam sonhos, respeitando prazos e custos.</p>
+                    </div>
+                    <div class="fade-in-section" style="animation-delay: 0.4s;">
+                        <div class="flex justify-center mb-4"><span class="text-4xl text-sky-500"><i class="fas fa-eye"></i></span></div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Visão</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Ser referência em resultados e inovação no mercado.</p>
+                    </div>
+                    <div class="fade-in-section" style="animation-delay: 0.6s;">
+                        <div class="flex justify-center mb-4"><span class="text-4xl text-sky-500"><i class="fas fa-heart"></i></span></div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Valores</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Respeito ao ser humano, honestidade e transparência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="laudos" class="py-24 bg-white dark:bg-gray-800">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        Laudos Técnicos e Vistorias
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Saiba se seu empreendimento está seguro e com a documentação em dia. Emitimos todos os laudos necessários:
+                    </p>
+                </div>
+                <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 max-w-5xl mx-auto fade-in-section text-gray-700 dark:text-gray-300 text-sm">
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Acessibilidade</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo das Instalações Elétricas</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Estabilidade e Segurança</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo Cautelar de Vizinhança</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Reforma</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Avaliação de Imóvel</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Impermeabilização</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Infiltrações</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Patologias Construtivas</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Vistoria e Conclusão de Obra</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo EIV (Estudo de Impacto)</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo AVS (Vistoria de Segurança)</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo Estrutural</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Vistoria para Locação</li>
+                    <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3"></i> Laudo de Acústica</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projetos" class="py-24 bg-gray-100 dark:bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-sky-500 mb-4">
+                        Sua Obra, do Projeto à Chave na Mão
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Desenvolvemos projetos integrados e compatibilizados para evitar erros e reduzir custos.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 text-center mb-16 fade-in-section text-sm">
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Arquitetura e Interiores</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Fundações e Estruturas</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Instalações Hidráulicas</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Instalações Elétricas</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Ar Condicionado</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Automação Residencial</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Segurança e Incêndio</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Paisagismo e Drenagem</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Acústica e Iluminação</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Análise Térmica/Energética</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Impermeabilização</span></div>
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg"><span class="font-medium text-gray-900 dark:text-white">Fachadas e Cozinhas</span></div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg border-t-4 border-sky-500 text-center max-w-3xl mx-auto fade-in-section">
+                    <span class="text-4xl text-sky-500 mb-4 block"><i class="fas fa-hard-hat"></i></span>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                        Gerenciamento de Obras e Orçamentos
+                    </h3>
+                    <p class="text-base text-gray-700 dark:text-gray-300 mt-2">
+                        Controle total de planilhas e cronogramas para sua tranquilidade.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="py-24 bg-white dark:bg-gray-800">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                        Quem Confia, Recomenda.
+                    </h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-8 rounded-lg fade-in-section">
+                        <div class="text-sky-500 text-xl mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-base italic text-gray-700 dark:text-gray-300 mb-6">"Super profissionais! Reformei toda a minha casa com a FEMAC. Cuidaram de tudo pra mim e não tive um problema sequer. Amamos o Resultado!"</p>
+                        <p class="font-bold text-gray-900 dark:text-white text-sm">— Sthela Alves, Empresária.</p>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-8 rounded-lg fade-in-section" style="animation-delay: 0.2s;">
+                        <div class="text-sky-500 text-xl mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-base italic text-gray-700 dark:text-gray-300 mb-6">"A FEMAC gerenciou todo o processo de obras e documentação da minha nova franquia em Praia Grande – SP. Eficiência total."</p>
+                        <p class="font-bold text-gray-900 dark:text-white text-sm">— Cléber Américo, Investidor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer id="contato" class="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 pt-24 pb-12">
+        <div class="container mx-auto max-w-7xl px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Pronto para iniciar seu projeto com segurança?</h3>
+                <p class="text-base text-gray-700 dark:text-gray-300 mb-8">
+                    Fale com nossa equipe técnica agora mesmo.
+                </p>
+                <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                   target="_blank" 
+                   class="btn-pulsing btn-animated inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-lg text-base uppercase tracking-wide hover:bg-sky-400 transition-colors transform hover:scale-105 mb-16">
+                    Falar no Whatsapp
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12 text-sm">
+                <div class="text-gray-700 dark:text-gray-300">
+                    <span class="text-xl text-sky-500 block mb-2"><i class="fas fa-map-marker-alt"></i></span>
+                    Atendemos Baixada Santista, São Paulo e Interior.
+                </div>
+                <div class="text-gray-700 dark:text-gray-300">
+                    <span class="text-xl text-sky-500 block mb-2"><i class="fas fa-phone-alt"></i></span>
+                    <a href="tel:+5513991931465" class="hover:text-sky-600 dark:hover:text-sky-500">+55 13 99193-1465</a>
+                </div>
+                <div class="text-gray-700 dark:text-gray-300">
+                    <span class="text-xl text-sky-500 block mb-2"><i class="fas fa-envelope"></i></span>
+                    <a href="mailto:fernanda@femacengenharia.com.br" class="hover:text-sky-600 dark:hover:text-sky-500">fernanda@femacengenharia.com.br</a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-700 pt-8">
+                <p class="text-gray-500 dark:text-gray-400 text-xs">
+                    © 2025 FEMAC Engenharia. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="theme-toggle-btn" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-lg transition-all hover:scale-110 hover:bg-sky-400 focus:outline-none">
+        <i id="theme-toggle-sun" class="fas fa-sun"></i>
+        <i id="theme-toggle-moon" class="fas fa-moon"></i>
+    </button>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

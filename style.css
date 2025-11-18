@@ -1,0 +1,212 @@
+/*
+  Este arquivo contém os estilos customizados.
+  1. Variáveis de Tema
+  2. Definição da Fonte
+  3. Estilo da Logo com Máscara
+  4. Animação de Fade-in
+  5. Estilos do Loader
+  6. Animação de Botão Pulsante
+  7. Animação de Feixe de Luz (Botão)
+  8. Animação de Flutuar
+  9. Animação de Marquee
+  10. Estilo do Ticker de Logo
+  11. Animação de Card
+  12. Ajustes Finais (Hero e Mobile)
+*/
+
+/* ==== 1. Variáveis de Tema ==== */
+:root {
+  --bg-loader: #ffffff;
+  --loader-track: #e5e7eb;
+  --loader-fill: #0ea5e9;
+  --bg-body: #ffffff;
+  --card-sheen-color: rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  --bg-loader: #111827;
+  --loader-track: #374151;
+  --bg-body: #111827;
+  --card-sheen-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==== 2. Definição da Fonte ==== */
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* ==== 3. Estilo da Logo com Máscara ==== */
+.logo-mask {
+    mask-image: url('logo.png');
+    -webkit-mask-image: url('logo.png');
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+}
+
+/* ==== 4. Animação de fade-in ao rolar ==== */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==== 5. Estilos do Loader ==== */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-loader);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+.loader {
+    border: 5px solid var(--loader-track);
+    border-top: 5px solid var(--loader-fill);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==== 6. Botão Pulsante ==== */
+.btn-pulsing {
+    animation: pulse-animation 2s infinite;
+}
+@keyframes pulse-animation {
+    0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(14, 165, 233, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+}
+
+/* ==== 7. Animação de Feixe de Luz ==== */
+@keyframes light-beam {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  100% { transform: translateX(350%) skewX(-25deg); }
+}
+.btn-animated {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-animated::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    filter: blur(5px);
+    animation: light-beam 4s linear infinite;
+    pointer-events: none;
+}
+
+/* ==== 8. Animação de Flutuar (Mantido para uso futuro) ==== */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* ==== 9. Animação de Marquee ==== */
+.marquee-track {
+    animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ==== 10. Ticker de Logo ==== */
+.logo-ticker-container {
+    position: relative;
+}
+@media (min-width: 768px) {
+    .logo-ticker-container::before,
+    .logo-ticker-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 2;
+        background: linear-gradient(to right, var(--bg-body), transparent);
+    }
+    .logo-ticker-container::before { left: 0; }
+    .logo-ticker-container::after { right: 0; background: linear-gradient(to left, var(--bg-body), transparent); }
+}
+
+/* ==== 11. Animação de Card ==== */
+.card-animated-v2 {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-out;
+}
+.card-animated-v2:hover {
+    transform: scale(1.03);
+}
+.card-animated-v2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--card-sheen-color), transparent);
+    filter: blur(5px);
+    transform: skewX(-25deg);
+    transition: left 0.4s ease-out;
+    pointer-events: none;
+    z-index: 10;
+}
+.card-animated-v2:hover::after {
+    left: 150%;
+}
+
+/* ==== 12. Ajustes Finais (Hero e Layers) ==== */
+/* Controles específicos para a imagem do Hero no Mobile e Desktop */
+.hero-image-mobile-fix {
+    display: block;         
+    width: 100%;           
+    height: auto;
+    margin-bottom: 0 !important; /* Deixamos o HTML controlar a margem negativa (-mb-1) */
+    position: relative;
+    z-index: 1; /* Imagem fica na camada 1 */
+}
+
+/* Garante a hierarquia de camadas (Z-Index) */
+#hero {
+    position: relative;
+    z-index: 1; /* Seção Hero na camada 1 */
+    display: flex;
+    flex-direction: column;
+}
+
+#logo-ticker {
+    position: relative;
+    z-index: 20; /* Barra na camada 20 (SUPERIOR), garantindo que apareça e a borda fique sobre a imagem */
+}

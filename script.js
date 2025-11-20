@@ -1,6 +1,7 @@
 /*
    ARQUIVO: script.js
    CONTÉM TODA A LÓGICA DO SITE FEMAC ENGENHARIA
+   VERSÃO FINAL: Comentários Infinitos Corrigidos + Galeria Vertical
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -111,11 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================================
-    // 6. SLIDER DE DEPOIMENTOS (Infinito + Drag Mobile/PC)
+    // 6. SLIDER DE DEPOIMENTOS (CORRIGIDO: Loop Infinito + Touch)
     // ============================================================
     const testimonialsSlider = document.getElementById('testimonials-slider');
 
     if (testimonialsSlider) {
+        // --- CORREÇÃO PRINCIPAL: DUPLICAR O CONTEÚDO PARA O LOOP FUNCIONAR ---
+        // Isso garante que haja "pista" suficiente para rolar infinitamente
+        testimonialsSlider.innerHTML += testimonialsSlider.innerHTML;
+
         let isDown = false;
         let startX;
         let scrollLeft;
@@ -125,12 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const animateTestimonials = () => {
             if (!isAutoScrolling) return;
             testimonialsSlider.scrollLeft += 1;
+            // Lógica de reset infinito
             if (testimonialsSlider.scrollLeft >= (testimonialsSlider.scrollWidth / 2)) {
                 testimonialsSlider.scrollLeft = 0;
             }
             autoScrollFrame = requestAnimationFrame(animateTestimonials);
         };
 
+        // Inicia a animação
         autoScrollFrame = requestAnimationFrame(animateTestimonials);
 
         const stopAutoScroll = () => { isAutoScrolling = false; cancelAnimationFrame(autoScrollFrame); };
@@ -145,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
             startX = e.pageX - testimonialsSlider.offsetLeft;
             scrollLeft = testimonialsSlider.scrollLeft;
         });
-        testimonialsSlider.addEventListener('mouseleave', () => { isDown = false; testimonialsSlider.classList.remove('cursor-grabbing'); startAutoScroll(); });
-        testimonialsSlider.addEventListener('mouseup', () => { isDown = false; testimonialsSlider.classList.remove('cursor-grabbing'); startAutoScroll(); });
+        testimonialsSlider.addEventListener('mouseleave', () => { isDown = false; testimonialsSlider.classList.remove('cursor-grabbing'); testimonialsSlider.classList.add('cursor-grab'); startAutoScroll(); });
+        testimonialsSlider.addEventListener('mouseup', () => { isDown = false; testimonialsSlider.classList.remove('cursor-grabbing'); testimonialsSlider.classList.add('cursor-grab'); startAutoScroll(); });
         testimonialsSlider.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
@@ -258,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gallerySlider.addEventListener('mouseup', () => { isDown = false; gallerySlider.classList.remove('cursor-grabbing'); if (lightboxModal && lightboxModal.classList.contains('hidden')) startGallery(); });
         gallerySlider.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - gallerySlider.offsetLeft; const walk = (x - startX) * 2; gallerySlider.scrollLeft = scrollLeft - walk; });
 
-        // --- Eventos TOUCH (Para Mobile) ---
+        // --- Eventos TOUCH (MOBILE) ---
         gallerySlider.addEventListener('touchstart', (e) => {
             stopGallery();
             isDown = true;

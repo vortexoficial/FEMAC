@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEMAC Engenharia - Soluções Completas</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto Condensed', 'sans-serif'],
+                    },
+                    colors: {
+                        sky: {
+                            450: '#0ea5e9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (theme === 'dark' || (!theme && systemPrefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {
+                console.warn('Não foi possível aplicar o tema salvo.', e);
+            }
+        })();
+    </script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-300 text-base">
+
+   <div id="loader" class="fixed inset-0 bg-white dark:bg-gray-900 flex flex-col items-center justify-center z-[9999] transition-opacity duration-700 ease-out">
+        <div class="flex flex-col items-center w-64 animate-fade-in-up">
+            <img src="img/logoe.png" alt="FEMAC Logo" class="w-32 h-auto mb-8 object-contain block dark:hidden" />
+            <img src="img/logob.png" alt="FEMAC Logo" class="w-32 h-auto mb-8 object-contain hidden dark:block" />
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-[2px] overflow-hidden">
+                <div class="bg-sky-500 h-[2px] rounded-full animate-loader-bar" style="width: 0%;"></div>
+            </div>
+            <p class="mt-4 text-gray-400 text-xs uppercase tracking-widest font-light">Carregando</p>
+        </div>
+    </div>
+
+    <header class="main-header fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300">
+        <div class="container mx-auto max-w-7xl px-4">
+            <div class="flex h-20 items-center justify-between bg-white/30 dark:bg-gray-900/30 backdrop-blur-lg border border-gray-900/10 dark:border-white/20 rounded-lg mt-4 px-6 shadow-lg">
+                
+                <a href="#hero" class="block" aria-label="FEMAC Engenharia - Início">
+                    <img src="img/logoe.png" alt="FEMAC Logo Light" class="h-8 w-auto object-contain block dark:hidden">
+                    <img src="img/logob.png" alt="FEMAC Logo Dark" class="h-8 w-auto object-contain hidden dark:block">
+                </a>
+                
+                <nav class="main-nav hidden lg:block">
+                    <ul class="flex items-center gap-8">
+                        <li><a href="#solucoes" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors font-medium">Soluções</a></li>
+                        <li><a href="#quem-somos" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors font-medium">Quem Somos</a></li>
+                        <li><a href="#laudos" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors font-medium">Laudos</a></li>
+                        <li><a href="#galeria" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors font-medium">Galeria</a></li>
+                        <li><a href="#projetos" class="text-gray-800 dark:text-white/90 hover:text-sky-600 dark:hover:text-sky-500 transition-colors font-medium">Projetos</a></li>
+                        
+                        <li>
+                            <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                               target="_blank" 
+                               class="bg-sky-500 text-white font-medium py-2 px-4 rounded-lg flex items-center hover:bg-sky-400 transition-colors text-sm shadow-md shadow-sky-500/20">
+                                <i class="fab fa-whatsapp mr-2 text-base"></i>
+                                Contato
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="flex items-center gap-4 lg:hidden">
+                    <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                       target="_blank" 
+                       class="bg-sky-500 text-white font-medium py-2 px-4 rounded-lg flex items-center hover:bg-sky-400 transition-colors text-sm">
+                        <i class="fab fa-whatsapp mr-2 text-base"></i>
+                        Contato
+                    </a>
+                    
+                    <button class="hamburger-menu text-gray-900 dark:text-white text-2xl" id="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay fixed inset-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg z-[999] flex flex-col p-6 transition-all duration-300 ease-in-out lg:hidden -translate-x-full" id="mobile-menu-overlay">
+        <div class="flex justify-between items-center mb-10">
+            <a href="#hero" class="block" aria-label="FEMAC Engenharia - Início">
+                <img src="img/logoe.png" alt="FEMAC Logo Light" class="h-8 w-auto object-contain block dark:hidden">
+                <img src="img/logob.png" alt="FEMAC Logo Dark" class="h-8 w-auto object-contain hidden dark:block">
+            </a>
+            <button class="close-menu text-gray-900 dark:text-white text-3xl" id="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav flex-grow">
+            <ul class="flex flex-col gap-6 text-center">
+                <li><a href="#solucoes" class="text-gray-900 dark:text-white text-xl font-medium hover:text-sky-500 transition-colors">Soluções</a></li>
+                <li><a href="#quem-somos" class="text-gray-900 dark:text-white text-xl font-medium hover:text-sky-500 transition-colors">Quem Somos</a></li>
+                <li><a href="#laudos" class="text-gray-900 dark:text-white text-xl font-medium hover:text-sky-500 transition-colors">Laudos</a></li>
+                <li><a href="#galeria" class="text-gray-900 dark:text-white text-xl font-medium hover:text-sky-500 transition-colors">Galeria</a></li>
+                <li><a href="#projetos" class="text-gray-900 dark:text-white text-xl font-medium hover:text-sky-500 transition-colors">Projetos</a></li>
+            </ul>
+        </nav>
+        <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="w-full text-center bg-sky-500 text-white font-bold py-3 px-6 rounded-lg text-base shadow-lg">
+            SOLICITAR ORÇAMENTO
+        </a>
+    </div>
+
+    <main>
+
+        <section id="hero" class="relative bg-white dark:bg-gray-900 overflow-hidden pt-32 lg:pt-28 pb-0 flex flex-col lg:block z-10">
+            <div class="container mx-auto max-w-7xl px-4 flex-grow flex flex-col lg:block"> 
+                <div class="flex flex-col h-full lg:grid lg:grid-cols-2 lg:gap-8 flex-grow">
+                    <div class="text-center lg:text-left pb-4 lg:pb-0 shrink-0 lg:self-center">
+                        <h1 class="text-3xl md:text-5xl lg:text-[4rem] font-black text-gray-900 dark:text-white leading-tight mb-4 fade-in-section">
+                            Engenharia de Excelência que Transforma Ideias em Realidade.
+                        </h1>
+                        <p class="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-4 fade-in-section" style="animation-delay: 0.2s;">
+                            Soluções completas para Residências, Comércio e Indústria. Da regularização (AVCB/CLCB) e laudos técnicos ao gerenciamento total da sua obra.
+                        </p>
+                        <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                           target="_blank" 
+                           class="btn-animated inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-lg text-base uppercase tracking-wide hover:bg-sky-400 transition-colors transform hover:scale-105 fade-in-section shadow-lg shadow-sky-500/30" 
+                           style="animation-delay: 0.4s;">
+                            Solicitar Orçamento Agora
+                        </a>
+                    </div>
+                    <div class="relative mt-auto -mx-4 lg:mx-0 lg:mt-0 w-[calc(100%+2rem)] lg:w-full flex justify-center items-end leading-none -mb-1 lg:self-end">
+                        <img 
+                            src="img/img1.png" 
+                            alt="Engenheira da FEMAC com capacete"
+                            class="hero-image-mobile-fix w-full h-auto lg:max-h-none object-contain object-bottom block z-0"
+                            onerror="this.src='https://placehold.co/600x600/000000/00000000?text=Imagem+FEMAC+Aqui'"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="logo-ticker" class="relative z-20 py-6 border-t border-b border-sky-500 overflow-hidden bg-white dark:bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4 logo-ticker-container">
+                <div class="marquee-container relative flex overflow-hidden">
+                    <div class="marquee-track flex-shrink-0 flex items-center justify-around min-w-full gap-16">
+                        <img src="logos/logo1p.png" alt="Parceiro 1" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo1b.png" alt="Parceiro 1" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo2p.png" alt="Parceiro 2" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo2b.png" alt="Parceiro 2" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo3p.png" alt="Parceiro 3" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo3b.png" alt="Parceiro 3" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo4p.png" alt="Parceiro 4" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo4b.png" alt="Parceiro 4" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo5p.png" alt="Parceiro 5" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo5b.png" alt="Parceiro 5" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo6p.png" alt="Parceiro 6" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo6b.png" alt="Parceiro 6" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo7p.png" alt="Parceiro 7" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo7b.png" alt="Parceiro 7" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo8p.png" alt="Parceiro 8" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo8b.png" alt="Parceiro 8" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo9p.png" alt="Parceiro 9" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo9b.png" alt="Parceiro 9" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo10p.png" alt="Parceiro 10" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo10b.png" alt="Parceiro 10" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo11p.png" alt="Parceiro 11" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo11b.png" alt="Parceiro 11" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo12p.png" alt="Parceiro 12" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo12b.png" alt="Parceiro 12" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo13p.png" alt="Parceiro 13" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo13b.png" alt="Parceiro 13" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo14p.png" alt="Parceiro 14" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo14b.png" alt="Parceiro 14" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo15p.png" alt="Parceiro 15" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo15b.png" alt="Parceiro 15" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo16p.png" alt="Parceiro 16" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo16b.png" alt="Parceiro 16" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo17p.png" alt="Parceiro 17" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo17b.png" alt="Parceiro 17" class="h-10 object-contain hidden dark:block">
+
+                        <img src="logos/logo18p.png" alt="Parceiro 18" class="h-10 object-contain block dark:hidden">
+                        <img src="logos/logo18b.png" alt="Parceiro 18" class="h-10 object-contain hidden dark:block">
+
+                         <img src="logos/logo1p.png" alt="Parceiro 1" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo1b.png" alt="Parceiro 1" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo2p.png" alt="Parceiro 2" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo2b.png" alt="Parceiro 2" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo3p.png" alt="Parceiro 3" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo3b.png" alt="Parceiro 3" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo4p.png" alt="Parceiro 4" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo4b.png" alt="Parceiro 4" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo5p.png" alt="Parceiro 5" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo5b.png" alt="Parceiro 5" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo6p.png" alt="Parceiro 6" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo6b.png" alt="Parceiro 6" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo7p.png" alt="Parceiro 7" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo7b.png" alt="Parceiro 7" class="h-10 object-contain hidden dark:block">
+                         <img src="logos/logo8p.png" alt="Parceiro 8" class="h-10 object-contain block dark:hidden">
+                         <img src="logos/logo8b.png" alt="Parceiro 8" class="h-10 object-contain hidden dark:block">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solucoes" class="py-24 bg-gray-100 dark:bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-sky-500 mb-4">
+                        Segurança e Conformidade Total
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Evite multas e interdições. Regularize seu imóvel com quem entende.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center gap-8">
+                    <div class="grid w-full grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-file-shield"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Projetos AVCB/CLCB</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Vistoria e regularização completa junto ao Corpo de Bombeiros.</p>
+                        </div>
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.1s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-fire-extinguisher"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Prevenção Contra Incêndios</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Elaboração e aprovação de sistemas de proteção para indústrias e comércios.</p>
+                        </div>
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.2s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-users-viewfinder"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Brigada de Incêndio</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Treinamento especializado para capacitar sua equipe na prevenção e combate.</p>
+                        </div>
+                    </div>
+                    <div class="grid w-full grid-cols-1 md:grid-cols-2 lg:w-2/3 gap-8">
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.3s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-building-user"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Serviços para Prefeituras</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Aprovação de projetos, regularizações, habite-se, desdobro e demolição.</p>
+                        </div>
+                        <div class="card-animated-v2 bg-white dark:bg-gray-800 p-6 rounded-lg transition-shadow duration-300 fade-in-section" style="animation-delay: 0.4s;">
+                            <span class="text-4xl text-sky-500 block mb-4"><i class="fa-solid fa-stamp"></i></span>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Certidão Negativa de Débito (CND)</h3>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Regularização de obras na Receita Federal com emissão ágil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quem-somos" class="pb-0 pt-0 lg:pt-32 lg:pb-20 bg-white dark:bg-gray-800 overflow-visible relative">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="relative">
+                    <div class="relative z-20 flex justify-center -mt-24 lg:mt-0 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-left-16 lg:block lg:w-[35%]">
+                        <img src="img/capacete.png" 
+                             alt="Capacete FEMAC Engenharia" 
+                             class="w-48 h-auto lg:w-full object-contain drop-shadow-xl fade-in-section">
+                    </div>
+                    <div class="mt-12 lg:mt-0 lg:ml-[20%] lg:border lg:border-sky-500 lg:dark:border-sky-500/50 lg:rounded-3xl lg:p-16 lg:bg-white/50 lg:dark:bg-gray-800/50 fade-in-section">
+                        <div class="flex flex-col lg:pl-24">
+                            <div class="text-center lg:text-left mb-12">
+                                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+                                    Projetos personalizados e obras que superam expectativas.
+                                </h2>
+                                <p class="text-base text-gray-700 dark:text-gray-300">
+                                    A FEMAC Engenharia nasceu da paixão pela construção e do compromisso inegociável com a qualidade.
+                                    <br class="hidden lg:block"> 
+                                    Entendemos que cada projeto é um sonho sendo materializado.
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-8 w-full">
+                                <div class="flex flex-row items-start gap-4" style="animation-delay: 0.2s;">
+                                    <div class="shrink-0 text-sky-500 text-3xl mt-1"><i class="fas fa-bullseye"></i></div>
+                                    <div class="text-left">
+                                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Missão</h3>
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">Viabilizar projetos que trazem retorno real e realizam sonhos, respeitando prazos e custos rigorosamente.</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row items-start gap-4" style="animation-delay: 0.4s;">
+                                    <div class="shrink-0 text-sky-500 text-3xl mt-1"><i class="fas fa-eye"></i></div>
+                                    <div class="text-left">
+                                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Visão</h3>
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">Ser referência absoluta em resultados, segurança e inovação no mercado de engenharia civil.</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row items-start gap-4" style="animation-delay: 0.6s;">
+                                    <div class="shrink-0 text-sky-500 text-3xl mt-1"><i class="fas fa-heart"></i></div>
+                                    <div class="text-left">
+                                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Valores</h3>
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">Respeito ao ser humano acima de tudo, honestidade nos negócios e transparência total.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="laudos" class="pt-10 pb-24 lg:py-32 bg-white dark:bg-gray-800 relative z-10 overflow-visible">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center lg:text-left max-w-3xl lg:max-w-4xl mb-12 lg:mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        Laudos Técnicos e Vistorias
+                    </h2>
+                    <p class="text-base md:text-lg text-gray-700 dark:text-gray-300">
+                        Saiba se seu empreendimento está seguro e com a documentação em dia. Emitimos todos os laudos necessários:
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="w-full lg:w-[65%] lg:border lg:border-sky-500 lg:dark:border-sky-500/50 lg:rounded-3xl lg:p-12 lg:bg-white/50 lg:dark:bg-gray-800/50 fade-in-section relative z-20">
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 w-fit mx-auto lg:mx-0 lg:w-full text-gray-700 dark:text-gray-300 text-base md:text-lg">
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Laudo de Acessibilidade</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Laudo Elétrico</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Estabilidade e Segurança</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Cautelar de Vizinhança</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Laudo de Reforma</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Avaliação de Imóvel</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Impermeabilização</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Laudo de Infiltrações</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Patologias Construtivas</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Vistoria de Obra</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> EIV (Estudo de Impacto)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> AVS (Vistoria de Segurança)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Laudo Estrutural</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Vistoria para Locação</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sky-500 mr-3 shrink-0"></i> Laudo de Acústica</li>
+                        </ul>
+                    </div>
+                    <div class="flex justify-center -mt-32 lg:mt-0 lg:block lg:absolute lg:-right-10 lg:top-1/2 lg:-translate-y-1/2 z-30">
+                        <img src="img/const.png" 
+                             alt="Destaque Construção FEMAC" 
+                             class="w-[20rem] md:w-[30rem] lg:w-[38rem] h-auto object-contain drop-shadow-2xl fade-in-section transform translate-y-1/2 lg:translate-y-0">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="py-24 bg-white dark:bg-gray-800 overflow-hidden relative border-t border-gray-100 dark:border-gray-700">
+            <div class="container mx-auto max-w-7xl px-4 mb-10">
+                <div class="text-center max-w-3xl mx-auto fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        Obras e Projetos Realizados
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Confira a qualidade e o acabamento dos nossos serviços. Clique nas imagens para ampliar.
+                    </p>
+                </div>
+            </div>
+            <div class="relative w-full group">
+                <div id="gallery-slider" class="flex gap-6 overflow-x-hidden cursor-grab py-4 px-4 select-none active:cursor-grabbing">
+                    </div>
+            </div>
+        </section>
+        
+        <div id="lightbox-modal" class="fixed inset-0 z-[9999] bg-black/95 hidden flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 p-4">
+            <button id="close-lightbox" class="absolute top-6 right-6 text-white/70 hover:text-white text-5xl transition-colors focus:outline-none z-50">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="lightbox-image" src="" alt="Zoom Projeto" class="max-w-full max-h-[90vh] object-contain rounded-md shadow-2xl transform scale-95 transition-transform duration-300">
+            <p class="text-gray-400 mt-4 text-sm font-light tracking-wider">Pressione ESC para fechar</p>
+        </div>
+        
+      <section id="projetos" class="py-24 bg-gray-100 dark:bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-sky-500 mb-4">
+                        Sua Obra, do Projeto à Chave na Mão
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Desenvolvemos projetos integrados e compatibilizados para evitar erros e reduzir custos.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 text-center mb-16 fade-in-section text-sm">
+                    
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-compass-drafting"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Arquitetura e Interiores</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Fundações e Estruturas</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-faucet-drip"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Instalações Hidráulicas</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Instalações Elétricas</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Ar Condicionado</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-house-signal"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Automação Residencial</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-fire-extinguisher"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Segurança e Incêndio</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Paisagismo e Drenagem</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Acústica e Iluminação</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-temperature-low"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Análise Térmica/Energética</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-droplet-slash"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Impermeabilização</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-5 rounded-lg hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 cursor-default">
+                        <div class="text-sky-500 text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">Fachadas e Cozinhas</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg border-t-4 border-sky-500 text-center max-w-3xl mx-auto fade-in-section">
+                    <span class="text-4xl text-sky-500 mb-4 block btn-pulsing w-fit mx-auto rounded-full p-2">
+                        <i class="fas fa-hard-hat"></i>
+                    </span>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                        Gerenciamento Completo de Obras
+                    </h3>
+                    <p class="text-base text-gray-700 dark:text-gray-300 mt-2 mb-8">
+                        Controle total de planilhas e cronogramas para sua tranquilidade.
+                    </p>
+                    <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20falar%20com%20um%20Engenheiro%20sobre%20gerenciamento." 
+                       target="_blank" 
+                       class="btn-animated inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-lg text-sm uppercase tracking-wide hover:bg-sky-400 transition-colors transform hover:scale-105 shadow-lg shadow-sky-500/30">
+                        <i class="fab fa-whatsapp mr-2 text-base"></i>
+                        Falar com Engenheiro
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="depoimentos" class="py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden relative group">
+            <div class="container mx-auto max-w-7xl px-4 mb-12">
+                <div class="text-center max-w-3xl mx-auto fade-in-section">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        Quem Confia, Recomenda.
+                    </h2>
+                    <p class="text-base text-gray-700 dark:text-gray-300">
+                        Veja o que nossos clientes dizem sobre a experiência FEMAC.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="relative w-full">
+                <div class="absolute top-0 left-0 h-full w-16 md:w-32 z-20 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
+                <div class="absolute top-0 right-0 h-full w-16 md:w-32 z-20 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
+                
+                <div id="testimonials-slider" class="flex gap-6 overflow-x-hidden cursor-grab py-8 px-4 select-none active:cursor-grabbing w-full">
+                    
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-lg mr-3 shrink-0">R</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white text-sm">Roberto Mendes</h4>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">2 avaliações • um mês atrás</div>
+                            </div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="w-5 h-5 ml-auto opacity-50 pointer-events-none">
+                        </div>
+                        <div class="flex text-yellow-400 text-xs mb-3 pointer-events-none">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed pointer-events-none whitespace-normal">
+                            Contratei a FEMAC para o laudo estrutural do meu galpão e fiquei impressionado. O relatório foi detalhado e a equipe identificou problemas que outros ignoraram.
+                        </p>
+                    </div>
+
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-lg mr-3 shrink-0">A</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white text-sm">Amanda Silva</h4>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Local Guide • 12 avaliações</div>
+                            </div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="w-5 h-5 ml-auto opacity-50 pointer-events-none">
+                        </div>
+                        <div class="flex text-yellow-400 text-xs mb-3 pointer-events-none">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed pointer-events-none whitespace-normal">
+                            Precisava regularizar o AVCB da minha loja com urgência. A equipe cuidou de toda a burocracia junto aos Bombeiros e aprovou o projeto muito antes do prazo.
+                        </p>
+                    </div>
+
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-lg mr-3 shrink-0">F</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white text-sm">Felipe Costa</h4>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">1 avaliação • 2 semanas atrás</div>
+                            </div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="w-5 h-5 ml-auto opacity-50 pointer-events-none">
+                        </div>
+                        <div class="flex text-yellow-400 text-xs mb-3 pointer-events-none">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed pointer-events-none whitespace-normal">
+                            Fizeram o gerenciamento da obra da minha casa do zero. O controle de custos foi impecável, não estouramos o orçamento e a qualidade do acabamento ficou perfeita.
+                        </p>
+                    </div>
+
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg mr-3 shrink-0">J</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white text-sm">Juliana Pires</h4>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Local Guide • 5 avaliações</div>
+                            </div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="w-5 h-5 ml-auto opacity-50 pointer-events-none">
+                        </div>
+                        <div class="flex text-yellow-400 text-xs mb-3 pointer-events-none">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed pointer-events-none whitespace-normal">
+                            Atendimento excelente. Solicitei um laudo de vizinhança e foram super atenciosos. Explicaram tecnicamente tudo o que estava acontecendo. Muito confiáveis.
+                        </p>
+                    </div>
+
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg mr-3 shrink-0">M</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white text-sm">Marcos Vinícius</h4>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">3 avaliações • 3 semanas atrás</div>
+                            </div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="w-5 h-5 ml-auto opacity-50 pointer-events-none">
+                        </div>
+                        <div class="flex text-yellow-400 text-xs mb-3 pointer-events-none">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed pointer-events-none whitespace-normal">
+                            Contratei para o projeto elétrico e hidráulico. Projetos muito bem detalhados e compatibilizados, o que facilitou muito na hora da execução. Aprovadíssimo.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="fundadora" class="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/2 flex justify-center md:justify-end fade-in-section">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-sky-400 to-sky-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                            <div class="relative rounded-2xl overflow-hidden border-4 border-white dark:border-gray-700 shadow-xl w-[300px] md:w-[380px] aspect-[3/4]">
+                                <img src="img/fundadora.png" 
+                                     alt="Fundadora da FEMAC Engenharia" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                     onerror="this.src='https://placehold.co/400x500?text=Foto+da+Fundadora'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left fade-in-section" style="animation-delay: 0.2s;">
+                        <span class="inline-block py-1 px-3 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300 text-xs font-bold tracking-wider mb-4 uppercase">
+                            Liderança & Visão
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-6">
+                            A Mente por Trás da <span class="text-sky-500">FEMAC</span>
+                        </h2>
+                        <div class="space-y-6 text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed font-light">
+                            <p>
+                                "Engenharia, para mim, nunca foi apenas sobre concreto, cálculos ou aço. É sobre a arte de traduzir sonhos abstratos em estruturas sólidas e seguras."
+                            </p>
+                            <p>
+                                Com uma trajetória marcada pela busca incessante pela excelência técnica e humanização dos processos, fundei a FEMAC para preencher uma lacuna no mercado: a necessidade de uma engenharia que ouve, entende e resolve de verdade.
+                            </p>
+                            <p>
+                                Cada laudo emitido e cada obra gerenciada carrega meu compromisso pessoal: entregar não apenas um serviço, mas a tranquilidade de que seu patrimônio está nas melhores mãos.
+                            </p>
+                            <div class="pt-4">
+                                <p class="font-bold text-gray-900 dark:text-white text-xl font-serif italic">Engª. Fernanda Maciel</p>
+                                <p class="text-sm text-sky-500 uppercase tracking-wide mt-1">Fundadora & Diretora Técnica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white pt-0 pb-10 relative border-t border-gray-200 dark:border-gray-800">
+        
+        <div class="relative z-30 flex flex-col items-center mb-16 pt-10 fade-in-section">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-col items-center group cursor-pointer" onclick="document.querySelector('#hero').scrollIntoView({behavior: 'smooth'})">
+                <div class="bg-sky-500 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-sky-400 transition-all group-hover:scale-110">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <span class="text-[10px] font-bold text-gray-400 mt-2 uppercase tracking-widest">Voltar para o topo</span>
+            </div>
+
+            <div class="text-center mt-8 max-w-2xl px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                    Pronto para iniciar seu projeto com segurança?
+                </h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base mb-8">
+                    Fale com nossa equipe técnica agora mesmo.
+                </p>
+                
+                <a href="https://api.whatsapp.com/send?phone=5513991931465&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." 
+                   target="_blank" 
+                   class="inline-block bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-8 rounded-md text-sm uppercase tracking-wide transition-colors shadow-lg shadow-sky-500/30">
+                    FALAR NO WHATSAPP
+                </a>
+            </div>
+        </div>
+
+        <div class="container mx-auto max-w-7xl px-4 mb-12">
+            <hr class="border-gray-200 dark:border-gray-800">
+        </div>
+
+        <div class="container mx-auto max-w-7xl px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div>
+                    <img src="img/logoe.png" alt="FEMAC Logo" class="h-10 w-auto object-contain mb-6 block dark:hidden">
+                    <img src="img/logob.png" alt="FEMAC Logo" class="h-10 w-auto object-contain mb-6 hidden dark:block">
+                    <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400 mb-6">
+                        Especialistas em engenharia civil, regularização de imóveis e prevenção contra incêndios. Soluções técnicas com excelência e compromisso.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-900 dark:text-white font-bold text-lg mb-6 border-l-4 border-sky-500 pl-3">Menu Rápido</h4>
+                    <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#quem-somos" class="hover:text-sky-500 transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-sky-500/50"></i> Quem Somos</a></li>
+                        <li><a href="#solucoes" class="hover:text-sky-500 transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-sky-500/50"></i> Soluções</a></li>
+                        <li><a href="#laudos" class="hover:text-sky-500 transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-sky-500/50"></i> Laudos Técnicos</a></li>
+                        <li><a href="#galeria" class="hover:text-sky-500 transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-sky-500/50"></i> Galeria de Obras</a></li>
+                        <li><a href="#projetos" class="hover:text-sky-500 transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-sky-500/50"></i> Projetos</a></li>
+                        <li><a href="#fundadora" class="hover:text-sky-500 transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-sky-500/50"></i> Fundadora</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-900 dark:text-white font-bold text-lg mb-6 border-l-4 border-sky-500 pl-3">Fale Conosco</h4>
+                    <ul class="space-y-4 text-sm text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-sky-500 mt-1 mr-3"></i>
+                            <span>Atendemos Baixada Santista, São Paulo e Interior.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-sky-500 mr-3"></i>
+                            <a href="tel:+5513991931465" class="hover:text-sky-500 transition-colors">+55 13 99193-1465</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-sky-500 mr-3"></i>
+                            <a href="mailto:fernanda@femacengenharia.com.br" class="hover:text-sky-500 transition-colors break-all">fernanda@femacengenharia.com.br</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-900 dark:text-white font-bold text-lg mb-6 border-l-4 border-sky-500 pl-3">Siga-nos nas redes sociais</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Acompanhe nossas obras e novidades:</p>
+                    <div class="flex gap-4">
+                        <a href="#" target="_blank" class="w-10 h-10 rounded bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition-all duration-300 group shadow-sm">
+                            <i class="fab fa-facebook-f text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                        <a href="#" target="_blank" class="w-10 h-10 rounded bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gradient-to-tr hover:from-[#fdf497] hover:via-[#d6249f] hover:to-[#285AEB] hover:text-white transition-all duration-300 group shadow-sm">
+                            <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 dark:text-gray-500">
+                <p>&copy; 2025 FEMAC Engenharia. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0 flex items-center">
+                    Desenvolvido por 
+                    <a href="https://api.whatsapp.com/send?phone=5511964956563&text=Ol%C3%A1,%20gostaria%20de%20um%20or%C3%A7amento!" 
+                       target="_blank" 
+                       class="font-bold text-sky-500 hover:text-sky-400 transition-colors uppercase tracking-wider ml-1 flex items-center">
+                        <i class="fas fa-bolt mr-1"></i> FUTURA DESIGN
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="theme-toggle-btn" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-lg transition-all hover:scale-110 hover:bg-sky-400 focus:outline-none">
+        <i id="theme-toggle-sun" class="fas fa-sun"></i>
+        <i id="theme-toggle-moon" class="fas fa-moon"></i>
+    </button>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
